@@ -14,9 +14,7 @@ var classTask = [
 ]
 
 app.get("/", (req,res) => {
-    res.render("index", {
-        classTask: classTask
-    })
+    res.render("home")
 });
 
 app.post("/insertData", (req,res) => {
@@ -68,6 +66,10 @@ app.post("/update", (req, res) => {
 
     res.redirect("/");
 });
+
+app.get('/nodeTask',(req,res)=>{
+    res.render("index",{classTask})
+})
 
 app.listen(5000, ()=> {
     console.log("Start server")
