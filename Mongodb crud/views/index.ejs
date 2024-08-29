@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form action="/create">
+        <input type="text" name="id" id="" placeholder="day" required>
+
+        <input type="text" name="username" id="" placeholder="Topic discription" required>
+        <input type="text" name="username" id="" placeholder="Topic discription" required>
+        <button type="submit" class="btn btn-primary p-2">Submit</button>
+    </form>
+
+    <% student.map((el, i)=> { %>
+        <tr>
+            <td>
+                <%= el.id %>
+            </td>
+            <br>
+            <td>
+                <%= el.username %>
+            </td>
+            <br>
+        </tr>
+        <tr>
+            <td>
+                <!-- <button class="btn btn-primary mt-2 edit-btn" data-id="<%= el.id %>" data-title="<%= el.title %>">Edit</button> -->
+                <button class="btn btn-primary mt-2"><a href="/editData?userid=<%= el.id%>"
+                        class="text-white text-decoration-none">edit</a></button>
+                <button class="btn btn-primary mt-2"><a href="/deleteData?userid=<%= el.id%>"
+                        class="text-white text-decoration-none">delete</a></button>
+            </td>
+            <hr>
+        </tr>
+        <% }) %>
+</body>
+
+</html>

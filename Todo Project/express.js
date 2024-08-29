@@ -50,6 +50,7 @@ app.get("/editData", (req,res) => {
         console.error("Task not found");
         res.redirect("/");
     }
+    
 });
 
 app.post("/update", (req, res) => {

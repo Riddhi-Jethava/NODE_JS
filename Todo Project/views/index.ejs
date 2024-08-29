@@ -11,10 +11,10 @@
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous"></script>
+        crossorigin="anonymous">
+    </script>
 
     <style>
-
         .main {
             width: 70%;
         }
@@ -27,61 +27,70 @@
             width: 90%;
             margin: auto;
         }
-
     </style>
+
+    <script>
+        function showTaskAddedAlert() {
+            alert('Task has been added successfully!');
+        }
+    </script>
+
 </head>
 
 <body>
-    <div class="container border shadow-lg p-3 mt-5 main" >
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12 border p-3 shadow-sm bg-light">
+                <a href="/" class="text-decoration-none text-dark">Home</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container border shadow-lg p-3 mt-5 main rounded rounded-3">
         <div class="row">
             <div class="col-lg-12">
                 <h5>Classroom Task</h5>
             </div>
             <div class="col-lg-12 ms-4">
-                <form action="/insertData" method="post">
+                <form action="/insertData" method="post" onsubmit="showTaskAddedAlert()">
                     <label for="">Upcoming...</label>
                     <br>
-                    <input type="text" name="id" id="" placeholder="day" 
-                        class="border rounded rounded-2 mt-2 p-2" required>
-                    
+                    <input type="text" name="id" id="" placeholder="day" class="border rounded rounded-2 mt-2 p-2" required>
+
                     <input type="text" name="title" id="" placeholder="Topic discription"
                         class="border rounded rounded-2 mt-2 p-2 inp" required>
                     <button type="submit" class="btn btn-primary p-2">Add Task</button>
                 </form>
             </div>
-            
-            <div class="col-lg-12 bg-light p-3 mt-4 task rounded rounded-3">
-                <!-- <table class="table">
-                    <thead>
+
+            <div class="col-lg-12 bg-light p-3 mt-4 task rounded rounded-3">               
+                <tbody>
+                    <h6 class="mt-2 mb-4 fw-bolder">Added task_</h6>
+                    <% classTask.map((el, i)=> { %>
                         <tr>
-                            <th scope="col">id</th>
-                            <th scope="col">Task</th>
+                            <td>
+                                <%= el.id %>
+                            </td>
+                            <br>
+                            <td>
+                                <%= el.title %>
+                            </td>
+                            <br>
                         </tr>
-                    </thead> -->
-                    <tbody>
-                        <h6 class="mt-2 mb-4 fw-bolder">Added task_</h6>
-                        <% classTask.map((el, i)=> { %>
-                            <tr>
-                                <td>
-                                    <%= el.id %>
-                                </td>
-                                <br>
-                                <td>
-                                    <%= el.title %>
-                                </td>
-                                <br>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <!-- <button class="btn btn-primary mt-2 edit-btn" data-id="<%= el.id %>" data-title="<%= el.title %>">Edit</button> -->
-                                    <button class="btn btn-primary mt-2"><a href="/editData?userid=<%= el.id%>" class="text-white text-decoration-none">edit</a></button>
-                                    <button class="btn btn-primary mt-2"><a href="/deleteData?userid=<%= el.id%>" class="text-white text-decoration-none">delete</a></button>
-                                </td>
-                                <hr>
-                            </tr>
-                            <% }) %>
-                    </tbody>
-                </table>
+                        <tr>
+                            <td>
+                                <!-- <button class="btn btn-primary mt-2 edit-btn" data-id="<%= el.id %>" data-title="<%= el.title %>">Edit</button> -->
+                                <button class="btn btn-primary mt-2"><a href="/editData?userid=<%= el.id%>"
+                                        class="text-white text-decoration-none">edit</a></button>
+                                <button class="btn btn-primary mt-2"><a href="/deleteData?userid=<%= el.id%>"
+                                        class="text-white text-decoration-none">delete</a></button>
+                            </td>
+                            <hr>
+                        </tr>
+                        <% }) %>
+                </tbody>
+
             </div>
         </div>
     </div>
