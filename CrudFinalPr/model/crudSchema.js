@@ -29,6 +29,11 @@ const crudSchema = mongoose.Schema({
     copies : {
         type : Number,
         required : true
+    },
+
+    image : {
+        type : String,
+        required : true
     }
 });
 

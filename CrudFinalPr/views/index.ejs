@@ -42,7 +42,7 @@
 
         form {
             width: 700px;
-            height: 420px;
+            height: 460px;
             /* border: 1px solid white; */
             display: flex;
             flex-direction: column;
@@ -103,15 +103,16 @@
     <div class="shadow-lg" id="main">
         <h3 class="p-4"> Book Store </h3>
 
-        <form action="/insertData" method="post" class="rounded rounded-4 shadow-lg">
+        <form action="/insertData" method="post" class="rounded rounded-4 shadow-lg" enctype="multipart/form-data">
             <input type="text" name="name" id="" placeholder="book name" class="form-control mt-3 bg-transparent text-white">
             <input type="text" name="auth" id="" placeholder="book author" class="form-control mt-3 bg-transparent text-white">
             <input type="number" name="year" id="" placeholder="Published year"
-                class="form-control mt-3 bg-transparent">
+                class="form-control mt-3 bg-transparent text-white">
             <input type="number" name="pages" id="" placeholder="book pages" class="form-control mt-3 bg-transparent text-white">
             <input type="number" name="prices" id="" placeholder="book prices" class="form-control mt-3 bg-transparent text-white">
             <input type="text" name="copies" id="" placeholder="Published copies"
-                class="form-control mt-3 mb-4 bg-transparent">
+                class="form-control mt-3 mb-3 bg-transparent text-white">
+                <input type="file" class="mb-3" name="image">
             <input type="Submit" class="btn add">
         </form>
 
@@ -124,6 +125,7 @@
                 <th>Page</th>
                 <th>Price</th>
                 <th>Copy</th>
+                <th>Image</th>
                 <th>Action</th>
             </tr>
             <h6 class="mt-5">Added details_</h6>
@@ -147,6 +149,9 @@
                         </td>
                         <td>
                             <%=el.copies%>
+                        </td>
+                        <td>
+                            <img src="<%=el.image%>" width="20%" alt="">
                         </td>
                         <td>
                             <a href="/deleteData?id=<%=el.id%>"><button class="btn mb-2 mt-2 me-2">
