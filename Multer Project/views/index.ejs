@@ -31,7 +31,6 @@
             width: 100%;
             height: auto;
             display: flex;
-            /* justify-content: center; */
         }
 
         #welCrt {
@@ -46,7 +45,7 @@
             margin-left: 10px;
         }
 
-        h5 {
+        #name {
             text-shadow: 1px -1px 2px rgb(58, 22, 22);
             letter-spacing: 2px;
         }
@@ -115,10 +114,46 @@
         }
 
         #orderForm {
-            /* display: none; */
+            display: none;
             border: 1px solid black;
         }
 
+        #mainOrderBox {
+            border: 1px solid black;
+            justify-content: first baseline;
+        }
+
+        #orderConfirm {
+            width: 280px;
+            padding: 10px;
+            position: relative;
+            overflow: hidden;
+            transition: width 0.5s ease;
+        }
+
+        #action {
+            width: 50px;
+            height: 100px;
+            position: absolute;
+            top: 30%;
+            right: -100px;
+            transform: translateY(-50%);
+            transition: right 0.5s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* border: 1px solid black; */
+            flex-wrap: wrap;
+        }
+
+        #orderConfirm:hover #action {
+            right: 10px;
+        }
+
+        #action button {
+            border: 1px solid black;
+            font-size: 18px;
+        }
     </style>
 
     <script>
@@ -134,11 +169,12 @@
     <div id="main">
         <div id="welComeBox">
             <div id="welCrt">
-                <img src="https://www.king.com/images/gameCharacters/Candy_Crush_Soda_Kimmi_King_Wave_left.webp?_v=1xdpwjh" width="80%" height="480px" alt="Candy Crush" />
+                <img src="https://www.king.com/images/gameCharacters/Candy_Crush_Soda_Kimmi_King_Wave_left.webp?_v=1xdpwjh"
+                    width="80%" height="480px" alt="Candy Crush" />
             </div>
             <figure class="swing wow animate__ animate__flipInX animated">
                 <div class="p-3 d-flex align-items-center justify-content-center flex-wrap" id="welbox">
-                    <h5 class="w-100 text-center">Cafe De Comida</h5>
+                    <h5 class="w-100 text-center" id="name">Cafe De Comida</h5>
                     <h6>Welcomes you!</h6>
                 </div>
             </figure>
@@ -147,8 +183,8 @@
             </div>
         </div>
 
-        <div class="d-flex justify-content-center ">
-            <form id="orderForm" action="/insertData" class="shadow-lg p-4 rounded rounded-2" method="post">
+        <div class="d-flex justify-content-center">
+            <form action="/insertData" id="orderForm" class="shadow-lg p-4 rounded rounded-2" method="post">
                 <input type="text" name="foodName" placeholder="Food" class="form-control mt-3">
                 <input type="number" name="cost" placeholder="Cost" class="form-control mt-3">
                 <input type="text" name="quantity" placeholder="Quantity" class="form-control mt-3">
@@ -156,6 +192,41 @@
                 <input type="number" name="total" placeholder="Total" class="form-control mt-3">
                 <input type="submit" id="subBtn" class="btn border mt-3">
             </form>
+        </div>
+        <h5> Order List</h5>
+        <div class="p-5 d-flex" id="mainOrderBox">
+            <% data.map((el, i) => { %>
+                <div class="border border-dark d-flex justify-content-between" id="orderConfirm">
+                    <div>
+                        <h6 class="d-flex">
+                            <p class="me-2">Food:</p>
+                            <%= el.foodName %>
+                        </h6>
+                        <h6 class="d-flex">
+                            <p class="me-2">Cost:</p>
+                            <%= el.cost %>
+                        </h6>
+                        <h6 class="d-flex">
+                            <p class="me-2">Quantity:</p>
+                            <%= el.quantity %>
+                        </h6>
+                        <h6 class="d-flex">
+                            <p class="me-2">Members:</p>
+                            <%= el.members %>
+                        </h6>
+                        <h6 class="d-flex">
+                            <p class="me-2">Total amount:</p>
+                            <%= el.total %>
+                        </h6>
+                    </div>
+                    <div id="action">
+                        <a href="/deleteData?id=<%= el.id %>" class="text-decoration-none"><button class="btn">
+                                <i class="ri-delete-bin-6-fill"></i></button></a>
+                        <a href="/editData?id=<%= el.id %>" class="text-decoration-none"><button class="btn">
+                                <i class="ri-pencil-fill"></i></button></a>
+                    </div>
+                </div>
+                <% }) %>
         </div>
     </div>
 

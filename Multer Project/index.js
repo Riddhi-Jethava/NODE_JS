@@ -14,11 +14,16 @@ app.get("/", async (req, res) => {
     res.render("index", { data });
 });
 
-app.post("/inserData", async (req, res) => {
+app.post("/insertData", async (req, res) => {
     console.log(req.body)
-    let data = await crud.creat(req.body)
+    let data = await crud.create(req.body)
     data ? res.redirect("back") : console.log("Data not added")
 });
+
+app.get("/editData", async (req,res) => {
+    let edit = await crud.findById(req.query.id);
+    edit ? res.render("editPage", { edit }) : console.log("Please try again, Data not found !")
+})
 
 app.listen(port, (err) => {
     err ? console.log("Error occured") : console.log(`Server start on port=${port}`)
