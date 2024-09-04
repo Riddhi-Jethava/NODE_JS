@@ -2,13 +2,18 @@ const mongoose = require("mongoose");
 
 const crudSchema = mongoose.Schema({
 
+    image : {
+        type : String,
+        required : true
+    },
+
     foodName: {
         type: String,
         required: true
     },
 
-    cost: {
-        type: Number,
+    size: {
+        type: String,
         required: true
     },
 
