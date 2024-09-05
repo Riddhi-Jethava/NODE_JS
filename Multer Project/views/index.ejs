@@ -20,20 +20,23 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
 
     <style>
+        body {
+            background-color: #1C1C1C;
+            color: #F5F5F5;
+            font-family: 'Arial', sans-serif;
+        }
+
         #main {
             min-height: 100vh;
-            max-height: auto;
-            width: 100%;
-            /* background-color: #F9DBBA; */
-            background-color: #000;
             padding-bottom: 50px;
+            background-color: #1A1A1A;
         }
 
         #welComeBox {
-            width: 100%;
-            height: 580px;
             display: flex;
             justify-content: center;
+            height: 580px;
+            width: 100%;
         }
 
         #welCrt {
@@ -42,17 +45,18 @@
         }
 
         #welbox {
-            background-color: #fcd3a8;
-            color: #474141;
-            border: 1px solid #FFEEAD;
+            background-color: #8C543A;
+            color: #F8F1E5;
+            border: 2px solid #FFD700;
             width: 260px;
             height: 90%;
             margin-left: 10px;
+            border-radius: 10px;
         }
 
         #name {
-            text-shadow: 1px -1px 2px rgb(58, 22, 22);
-            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px #000;
+            letter-spacing: 3px;
         }
 
         .swing {
@@ -60,69 +64,61 @@
             animation: swing ease-in-out 5s infinite alternate;
             transform-origin: center -20px;
             float: left;
-            box-shadow: 5px 5px 10px rgba(73, 71, 71, 0.521);
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
             margin-left: 0px;
             margin-top: 120px;
         }
 
-        .swing:before {
-            content: '';
-            position: absolute;
-            width: 5px;
-            height: 5px;
-            top: -14px;
-            left: 49%;
-            z-index: 5;
-            border-radius: 50% 50%;
-            background: #b29c9c;
-        }
-
-        .swing:after {
-            content: '';
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            border: 1px solid #999;
-            top: -10px;
-            left: 46.5%;
-            z-index: 0;
-            border-bottom: none;
-            border-right: none;
-            transform: rotate(45deg);
-        }
-
         form {
             width: 600px;
-            height: auto;
+            background-color: #333333;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="file"] {
+            background-color: #4D4D4D;
+            color: white;
+            border: 1px solid #777;
+        }
+
+        input[type="text"]:focus,
+        input[type="number"]:focus,
+        input[type="file"]:focus {
+            background-color: #555555;
+            color: white;
         }
 
         #subBtn {
-            background-color: #697565;
+            background-color: #D4A373;
             color: white;
+            transition: background-color 0.3s ease;
+        }
+
+        #subBtn:hover {
+            background-color: #A0522D;
+            color: #FFF;
         }
 
         #orderBtn button {
-            background-color: #697565;
+            background-color: #D4A373;
             color: white;
             padding: 10px;
-            border: 1px solid #FFEEAD;
+            border: 1px solid #FFD700;
         }
 
         #orderBtn button:hover {
             background-color: transparent;
-            color: #ECDFCC;
-            font-weight: bold;
-            border: 1px solid #34495e;
-            box-shadow: 1px 1px 1px 1px #FFEEAD;
+            color: #FFD700;
+            border: 1px solid #FFD700;
+            box-shadow: 0px 0px 5px 2px #FFD700;
         }
 
         #orderForm {
             display: none;
-            border: 1px solid rgb(70, 68, 68);
-        }
-
-        .text-12px {
-            font-size: 14px !important;
+            border: 1px solid #444;
         }
     </style>
 
@@ -156,8 +152,7 @@
             </div>
         </div>
         <div class="d-flex justify-content-center mt-5">
-            <form action="/insertData" id="orderForm" class="shadow-lg p-4 rounded rounded-2" method="post"
-                enctype="multipart/form-data">
+            <form action="/insertData" id="orderForm" class="shadow-lg p-4" method="post" enctype="multipart/form-data">
                 <input type="file" name="image" class="form-control mt-3">
                 <input type="text" name="foodName" placeholder="Food" class="form-control mt-3">
                 <input type="text" name="size" placeholder="size" class="form-control mt-3">
