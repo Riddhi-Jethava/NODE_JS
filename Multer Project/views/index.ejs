@@ -19,9 +19,12 @@
     <!-- animation css -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+
+
     <style>
         body {
-            background-color: #1C1C1C;
+            background-color: black;
             color: #F5F5F5;
             font-family: 'Arial', sans-serif;
         }
@@ -29,7 +32,10 @@
         #main {
             min-height: 100vh;
             padding-bottom: 50px;
-            background-color: #1A1A1A;
+            /* background-color: #1A1A1A; */
+            /* background-color: #031d44; */
+            /* background-color: #2C302E; */
+           background-color: #333232;
         }
 
         #welComeBox {
@@ -45,9 +51,10 @@
         }
 
         #welbox {
-            background-color: #8C543A;
+            background-color: #DAB785;
+            /* background-color: #F7D4BC; */
             color: #F8F1E5;
-            border: 2px solid #FFD700;
+            border: 2px solid gray;
             width: 260px;
             height: 90%;
             margin-left: 10px;
@@ -58,7 +65,43 @@
             text-shadow: 2px 2px 4px #000;
             letter-spacing: 3px;
         }
+        .swing {
+  animation: swing ease-in-out 5s infinite alternate;
+  transform-origin: center -20px;
+  float: left;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+  margin-left: 60px;
+}
 
+.swing:hover{
+  animation: normal;
+}
+
+.swing:before {
+  content: '';
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  top: -14px;
+  left: 52%;
+  z-index: 5;
+  border-radius: 50% 50%;
+  background: #000;
+}
+
+.swing:after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border: 1px solid #999;
+  top: -10px;
+  left: 50%;
+  z-index: 0;
+  border-bottom: none;
+  border-right: none;
+  transform: rotate(45deg);
+}
         .swing {
             height: 100px;
             animation: swing ease-in-out 5s infinite alternate;
@@ -67,6 +110,7 @@
             box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
             margin-left: 0px;
             margin-top: 120px;
+            /* border: 1px solid white; */
         }
 
         form {
@@ -92,18 +136,23 @@
         }
 
         #subBtn {
-            background-color: #D4A373;
+            background-color: #DAB785;
             color: white;
             transition: background-color 0.3s ease;
         }
 
         #subBtn:hover {
-            background-color: #A0522D;
-            color: #FFF;
+            /* background-color: #A0522D; */
+            /* background-color: transparent;
+            color: #FFF; */
+            background-color: transparent;
+            color: #FFD700;
+            border: 1px solid #FFD700;
+            box-shadow: 0px 0px 5px 2px #FFD700;
         }
 
         #orderBtn button {
-            background-color: #D4A373;
+            background-color: #DAB785;
             color: white;
             padding: 10px;
             border: 1px solid #FFD700;
@@ -133,12 +182,12 @@
 <body>
 
     <div id="main">
-        <div id="welComeBox">
-            <div id="welCrt">
+        <div id="welComeBox" data-aos="fade-up">
+            <div id="welCrt"  data-aos="fade-right">
                 <img src="https://www.king.com/images/gameCharacters/Candy_Crush_Soda_Kimmi_King_Wave_left.webp?_v=1xdpwjh"
                     width="90%" height="550px" alt="Candy Crush" />
             </div>
-            <figure class="swing wow animate__ animate__flipInX animated">
+            <figure  class="swing wow animate__ animate__flipInX animated">
                 <div class="p-3 d-flex align-items-center justify-content-center flex-wrap" id="welbox">
                     <h5 class="w-100 text-center" id="name">Cafe De Comida</h5>
                     <h6>Welcomes you!</h6>
@@ -166,5 +215,9 @@
     </div>
 
 </body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
 
+<script>
+    AOS.init();
+</script>
 </html>

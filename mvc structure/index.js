@@ -1,14 +1,21 @@
-const express = require('express');
+const express = require("express");
+const port = 5000;
+
 const app = express();
-const path = require('path');
-app.set('view engine', 'ejs');
-app.use(express.urlencoded({ extended: true }));
-app.use('/images', express.static(path.join(__dirname, 'images')));
-app.use('/styles', express.static(path.join(__dirname, 'styles')));
+const db = require("./config/database")
+const path = require("path")
 
-app.use('/', require('./routes'));
+app.set("view engine", "ejs")
 
 
-app.listen(1008, (err) => {
-    console.log(err ? err : 'Server Started On port 1008');
+app.use(express(express.urlencoded({ extended: true })));
+
+app.use('/img', express.static(path.join(__dirname, 'img')));
+app.use('/style', express.static(path.join(__dirname, 'style')));
+
+app.use("/", require('./routes'));
+
+app.listen(port, (err) => {
+    err ? console.log("Error occured") : console.log(`Server start on port =${port}`)
 });
+

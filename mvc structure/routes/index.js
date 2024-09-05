@@ -1,11 +1,11 @@
-const express = require('express')
-const routes = express.Router()
+const express = require("express");
+const routes = express.Router();
 
-const adminCtr = require('../controller/adminCtr')
+const adminCtrl = require("../controllers/admitCtrl")
 
-routes.get('/', adminCtr.home)
-routes.get('/about', adminCtr.about)
-routes.get('/book', adminCtr.book)
-routes.get('/contact', adminCtr.contact)
+routes.get('/', adminCtrl.home);
+routes.get('/about', adminCtrl.about);
+routes.get('/services', adminCtrl.services);
+routes.get('/contact', adminCtrl.contact);
 
 module.exports = routes
