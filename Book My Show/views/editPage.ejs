@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    edit
+    <form action="/updateData?id=<%edit.id%>" method="post">
+        <input type="text" name="movieName" value="<%=edit.movieName%>" id="" placeholder="enter movie name">
+        <input type="number" name="votes" value="<%=edit.votes%>" id="" placeholder="vote">
+        <input type="text" name="genre" value="<%=edit.genre%>" id="" placeholder="genre">
+        <input type="text" name="language" value="<%=edit.language%>" id="" placeholder="language">
+        <input type="date" name="relDate" value="<%=edit.relData%>" id="" placeholder="date">
+        <input type="text" name="duration" value="<%=edit.duration%>" id="" placeholder="time">
+        <input type="text" name="aboutMovie" value="<%=edit.aboutmovie%>" id="" placeholder="about">
+        <input type="submit">
+    </form>
+</body>
+</html>
