@@ -24,6 +24,10 @@
             border: 1px solid black;
         }
 
+        #addForm {
+            border: 1px solid lightgray;
+        }
+
         #nav h6 a{
             text-decoration: none;
             color: #000;
@@ -65,10 +69,10 @@
                             class="form-control ms-4 position-relative">
                         </div>
                         
-                        <div class="col-lg-2 d-flex justify-content-evenly align-items-center">
-                            <h6>Rajkot</h6>
-                            <button class="btn border">Add</button>
-                            <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas"
+                        <div class="col-lg-3 d-flex justify-content-evenly align-items-center">
+                            <h6 class="ms-5">Rajkot</h6>
+                            <a href='form'><button id="addForm">Add (Form)</button></a>
+                            <button class="border border-white bg-white fs-4" type="button" data-bs-toggle="offcanvas"
                                 data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions"><i
                                     class="ri-menu-line"></i></button>
 
@@ -135,8 +139,8 @@
         <h6>
             <%=el.aboutMovie%>
         </h6>
-        <a href="/deleteData">Delete</a>
-        <a href="/editData">Edit</a>
+        <a href="/deleteData?id=<%= el.id %>">Delete</a>
+        <a href="/editData?id=<%= el.id %>">Edit</a>
 
         <% }) %>
 </body>

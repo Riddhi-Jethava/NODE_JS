@@ -11,6 +11,7 @@ module.exports.form = (req, res) => {
 }
 
 module.exports.insertData = async (req, res) => {
+    console.log(req.body)
     const data = await schema.create(req.body)
     data ? res.redirect('/') : console.log('Data Not Inserted')
 }

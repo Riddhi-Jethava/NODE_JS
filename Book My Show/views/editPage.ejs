@@ -7,7 +7,7 @@
 </head>
 <body>
     edit
-    <form action="/updateData?id=<%edit.id%>" method="post">
+    <form action="/updateData?id=<%=edit.id%>" method="post">
         <input type="text" name="movieName" value="<%=edit.movieName%>" id="" placeholder="enter movie name">
         <input type="number" name="votes" value="<%=edit.votes%>" id="" placeholder="vote">
         <input type="text" name="genre" value="<%=edit.genre%>" id="" placeholder="genre">
