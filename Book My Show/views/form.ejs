@@ -7,7 +7,8 @@
 </head>
 <body>
     Form
-    <form action="/insertData" method="post">
+    <form action="/insertData" method="post" enctype="multipart/form-data">
+        <input type="file" name="moviePoster" id="">
         <input type="text" name="movieName" id="" placeholder="enter movie name">
         <input type="number" name="votes" id="" placeholder="vote">
         <input type="text" name="genre" id="" placeholder="genre">

@@ -11,9 +11,14 @@ module.exports.form = (req, res) => {
 }
 
 module.exports.insertData = async (req, res) => {
-    console.log(req.body)
-    const data = await schema.create(req.body)
-    data ? res.redirect('/') : console.log('Data Not Inserted')
+    // console.log(req.body)
+    // const data = await schema.create(req.body)
+    // data ? res.redirect('/') : console.log('Data Not Inserted')
+
+    req.body.image = req.file.filename
+    let data = await schema.create(req.body)
+    let confData = await schema.find({});
+    data ? res.render("confirmOrders", { data: confData }) : console.log("Data not added")
 }
 
 module.exports.deleteData = async (req,res) => {
@@ -27,6 +32,18 @@ module.exports.editData = async (req,res) => {
 }
 
 module.exports.updateData = async (req,res) => {
+    let img = ""
+    let data = await schema.findById(req.query.id);
+    if (req.file) {
+        img = req.file.filename; // Corrected to use just the filename
+        if (data.image) {
+            fs.unlinkSync(path.join(__dirname, "uploads", data.image)); // Delete the old image file
+        }
+    } else {
+        img = data.image;
+    }
+
+    req.body.image = img;
     const update = await schema.findByIdAndUpdate(req.query.id, req.body);
     update ? res.redirect("/") : console.log("Data not updated");
 }
