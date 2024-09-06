@@ -18,17 +18,28 @@
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
 
     <style>
+        header {
+            background-color: #fff;
+            border-bottom: 1px solid #dee2e6;
+            padding: 10px 0;
+        }
+
         #body {
             width: 100%;
             height: 60px !important;
             border: 1px solid black;
         }
 
-        #addForm {
-            border: 1px solid lightgray;
+        #nav {
+            background-color: #f1f3f5;
+            padding: 10px 0;
         }
 
-        #nav h6 a{
+        #nav h6 a:hover {
+            text-decoration: underline;
+        }
+
+        #nav h6 a {
             text-decoration: none;
             color: #000;
             font-size: 14px;
@@ -49,8 +60,28 @@
         #nav h6 {
             margin-left: 115px;
             margin-right: 115px;
+            margin-top: 3px;
         }
 
+        #addForm {
+            border-radius: 5px;
+            background-color: #dee2e6;
+            border: 1px solid lightgray;
+            color: darkblue;
+        }
+
+        #addForm:hover {
+        }
+
+        #data {
+            width: 280px;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        #poster {
+            height: 260px;
+        }
     </style>
 
 </head>
@@ -58,17 +89,17 @@
 <body>
 
     <header>
-        <div class="container-fluid border border-dark">
+        <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-10 m-auto p-2">
                     <div class="row justify-content-between">
                         <div class="col-lg-8 d-flex align-items-center">
-                            <h6>bookmyshow</h6>
-                            <i class="ri-search-line position-absolute" id="search"></i><input type="search" name="" id=""
-                            placeholder="search for movies, Events, Plays, Sports and Activities"
-                            class="form-control ms-4 position-relative">
+                            <h6>BookMyShow</h6>
+                            <i class="ri-search-line position-absolute" id="search"></i><input type="search" name=""
+                                id="" placeholder="search for movies, Events, Plays, Sports and Activities"
+                                class="form-control ms-4 position-relative">
                         </div>
-                        
+
                         <div class="col-lg-3 d-flex justify-content-evenly align-items-center">
                             <h6 class="ms-5">Rajkot</h6>
                             <a href='form'><button id="addForm">Add (Form)</button></a>
@@ -103,7 +134,7 @@
                         <a href="" class="p-2">Sports</a>
                         <a href="" class="p-2">Activities</a>
                     </h6>
-                    <h6> 
+                    <h6>
                         <a href="" class="p-2">ListYourShow</a>
                         <a href="" class="p-2">Corporates</a>
                         <a href="" class="p-2">Offers</a>
@@ -114,33 +145,48 @@
         </div>
     </header>
 
-    <!-- data -->
-    <%data.map((el,i)=>{%>
-        <h6>
-            <%=el.movieName%>
-        </h6>
-        <h6>
-            <%=el.votes%>
-        </h6>
-        <h6>
-            <%=el.genre%>
-        </h6>
-        <h6>
-            <%=el.language%>
-        </h6>
-        <h6>
-            <%=el.relDate%>
-        </h6>
-        <h6>
-            <%=el.duration%>
-        </h6>
-        <h6>
-            <%=el.aboutMovie%>
-        </h6>
-        <a href="/deleteData?id=<%= el.id %>">Delete</a>
-        <a href="/editData?id=<%= el.id %>">Edit</a>
+    <div class="shadow-lg p-4">
+        <h5 class="mb-4">Recommended Movies</h5>
+        <!-- data -->
+        <div class="border" id="data">
+            <%data.map((el,i)=>{%>
+                <div class="border border-dark" id="poster">
+                    <img src="<%=el.image%>" alt="">
+                </div>
+                <h6 class="ps-2 pt-3">
+                    <%=el.movieName%>
+                </h6>
+                <h6 class="ps-2">
+                    <%=el.votes%>
+                </h6>
+                <h6 class="ps-2">
+                    <%=el.genre%>
+                </h6>
+                <h6 class="ps-2">
+                    <%=el.language%>
+                </h6>
+                <h6 class="ps-2">
+                    <%=el.relDate%>
+                </h6>
+                <h6 class="ps-2">
+                    <%=el.duration%>
+                </h6>
+                <h6 class="ps-2">
+                    <%=el.aboutMovie%>
+                </h6>
+                <button class="btn btn-border border-dark mb-2 ms-2"><a href="/deleteData?id=<%= el.id %>"
+                        class="text-decoration-none">Delete</a></button>
+                <button class="btn btn-border border-dark mb-2"><a href="/editData?id=<%= el.id %>"
+                        class="text-decoration-none">Edit</a></button>
 
-        <% }) %>
+                <% }) %>
+        </div>
+    </div>
+
+    <footer>
+        <h6></h6>
+    </footer>
+
 </body>
 
 </html>

@@ -15,23 +15,29 @@ module.exports.insertData = async (req, res) => {
     // const data = await schema.create(req.body)
     // data ? res.redirect('/') : console.log('Data Not Inserted')
 
-    req.body.image = req.file.filename
-    let data = await schema.create(req.body)
-    let confData = await schema.find({});
-    data ? res.render("confirmOrders", { data: confData }) : console.log("Data not added")
+    // req.body.image = req.file.filename
+    // let data = await schema.create(req.body)
+    // let confData = await schema.find({});
+    // data ? res.render("confirmOrders", { data: confData }) : console.log("Data not added")
+
+    console.log(req.body, 'Files : -', req.files)
+    if (req.files) {
+        req.body.moviePoster = req.files.moviePoster ? req.files.moviePoster[0].path : null;
+        req.body.movieName = req.files.movieName ? req.files.movieName[0].path : null;
+    }
 }
 
-module.exports.deleteData = async (req,res) => {
+module.exports.deleteData = async (req, res) => {
     const deleteData = await schema.findByIdAndDelete(req.query.id);
     deleteData ? res.redirect('/') : console.log("Data is not deleted")
 }
 
-module.exports.editData = async (req,res) => {
+module.exports.editData = async (req, res) => {
     const edit = await schema.findById(req.query.id);
     edit ? res.render("editPage", { edit }) : console.log("Please try again, Data not found !")
 }
 
-module.exports.updateData = async (req,res) => {
+module.exports.updateData = async (req, res) => {
     let img = ""
     let data = await schema.findById(req.query.id);
     if (req.file) {
