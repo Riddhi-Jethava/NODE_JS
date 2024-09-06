@@ -5,8 +5,7 @@ const adminCtrl = require('../controllers/adminCtrl');
 const multer = require("multer");
 const fs = require("fs");
 const path = require("path");
-const { fstat } = require("fs");
-const { log } = require("console");
+
 routes.use('/uploads',express.static(path.join(__dirname, "uploads")))
 
 const Storage = multer.diskStorage({
@@ -18,16 +17,13 @@ const Storage = multer.diskStorage({
     }
 });
 
-const uploads = multer({ storage: Storage }).fields([
-    { name: 'moviePoster', maxCount: 1 },
-    { name: 'movieName', maxCount: 1 }
-]);
+const uploads = multer({ storage: Storage }).single('moviePoster')
 
 routes.get("/", adminCtrl.homePage);
 routes.get("/form", adminCtrl.form);
-routes.post('/insertData', adminCtrl.insertData);
+routes.post('/insertData', uploads,adminCtrl.insertData);
 routes.get('/deleteData', adminCtrl.deleteData);
 routes.get('/editData', adminCtrl.editData);
-routes.post('/updateData', adminCtrl.updateData);
+routes.post('/updateData', uploads,adminCtrl.updateData);
 
 module.exports = routes

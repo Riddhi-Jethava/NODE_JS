@@ -16,6 +16,9 @@
 
     <!-- remix-icon -->
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
+    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
 
     <style>
         header {
@@ -70,8 +73,7 @@
             color: darkblue;
         }
 
-        #addForm:hover {
-        }
+        #addForm:hover {}
 
         #data {
             width: 280px;
@@ -81,6 +83,61 @@
 
         #poster {
             height: 260px;
+        }
+
+        .card {
+            border-radius: 15px;
+            overflow: hidden;
+            height: 520px;
+        }
+
+        .card img {
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+        }
+
+        .card-img-top {
+            width: 100%;
+            height: 200px;
+        }
+
+        .rating {
+            background-color: #000;
+            color: #fff;
+            padding: 5px 10px;
+            border-bottom-left-radius: 15px;
+            border-bottom-right-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .rating i {
+            color: red;
+            margin-right: 5px;
+        }
+
+        .title {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .genre {
+            color: gray;
+        }
+        
+        .btn-action {
+            background-color: #0f1d2c;
+            color: white;
+        }
+
+        .btn-actionDlt {
+            background-color: #4a0e0e;
+            color: white;
+        }
+
+        .btn:hover {
+            border: 1px solid rgb(9, 9, 61);
         }
     </style>
 
@@ -102,7 +159,7 @@
 
                         <div class="col-lg-3 d-flex justify-content-evenly align-items-center">
                             <h6 class="ms-5">Rajkot</h6>
-                            <a href='form'><button id="addForm">Add (Form)</button></a>
+                            <a href='form'><button id="addForm">Movie Data</button></a>
                             <button class="border border-white bg-white fs-4" type="button" data-bs-toggle="offcanvas"
                                 data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions"><i
                                     class="ri-menu-line"></i></button>
@@ -117,7 +174,7 @@
                                 <div class="offcanvas-body shadow-lg">
                                     <div id="body" class=" d-flex justify-content-evenly align-items-center">
                                         <div></div>
-                                        <p class="w-50">Unlock special offers $ great benefits</p>
+                                        <p class="w-50 pt-2" >Unlock special offers $ great benefits</p>
                                         <button class="btn btn-border border-dark">login/register</button>
                                     </div>
                                 </div>
@@ -148,45 +205,53 @@
     <div class="shadow-lg p-4">
         <h5 class="mb-4">Recommended Movies</h5>
         <!-- data -->
-        <div class="border" id="data">
-            <%data.map((el,i)=>{%>
-                <div class="border border-dark" id="poster">
-                    <img src="<%=el.image%>" alt="">
-                </div>
-                <h6 class="ps-2 pt-3">
-                    <%=el.movieName%>
-                </h6>
-                <h6 class="ps-2">
-                    <%=el.votes%>
-                </h6>
-                <h6 class="ps-2">
-                    <%=el.genre%>
-                </h6>
-                <h6 class="ps-2">
-                    <%=el.language%>
-                </h6>
-                <h6 class="ps-2">
-                    <%=el.relDate%>
-                </h6>
-                <h6 class="ps-2">
-                    <%=el.duration%>
-                </h6>
-                <h6 class="ps-2">
-                    <%=el.aboutMovie%>
-                </h6>
-                <button class="btn btn-border border-dark mb-2 ms-2"><a href="/deleteData?id=<%= el.id %>"
-                        class="text-decoration-none">Delete</a></button>
-                <button class="btn btn-border border-dark mb-2"><a href="/editData?id=<%= el.id %>"
-                        class="text-decoration-none">Edit</a></button>
+        
+        <div class="container  mt-5 d-flex justify-content-start">
+            <%data.map((e)=>{%>
+                <div class="card mx-auto col-4 " style="width: 20rem">
+                    <img src="<%=e.moviePoster%>" class="card-img-top" />
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <span>
+                            <%=e.star%> <%=e.votes%>/10 Votes
+                        </span>
+                    </div>
+                    <div class="card-body text-center">
+                        <h5 class="title">
+                            <%=e.movieName%>
+                        </h5>
+                        <p>
+                            <%=e.language%>
+                        </p>
+                        <p class="genre">
+                            <%=e.genre%>
+                        </p>
+                        <p>
+                            <%=e.aboutMovie%>
+                        </p>
+                        <p>
+                            <%=e.relDate%>
+                        </p>
+                        
 
-                <% }) %>
+                    </div>
+                    <div style="display: flex;" class="ps-3 mb-2">
+                        <a href="/editData?id=<%=e.id%>"><button class="btn btn-action">Edit</button></a> &nbsp;&nbsp;
+                        <a href="/deleteData?id=<%=e.id%>"><button class="btn btn-actionDlt">Delete</button></a>
+                    </div>
+                </div>
+                <%})%>
         </div>
+
     </div>
 
     <footer>
         <h6></h6>
     </footer>
-
+    <script crossorigin="anonymous" integrity="sha384-oBqDVmMz4fnFO9gybBogGzOgQpeKBmBI4rAu9o6KLGp1rF5t1M6t/a6pR0z6d5Q+"
+        src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script crossorigin="anonymous" integrity="sha384-pQWzqazmEBV8a4p0vvTSgIjUmtjJYq+K2MfLhpb9R4J28N5Y/BwD3z2yL2A3uY4D"
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
 </body>
 
 </html>

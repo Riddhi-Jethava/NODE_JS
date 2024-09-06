@@ -9,37 +9,37 @@ const movieSchema = mongoose.Schema({
 
     movieName: {
         type: String,
-        required: true
+        required: false
     },
 
     votes: {
         type: Number,
-        required: true
+        required: false
     },
 
     genre: {
         type: String,
-        required: true
+        required: false
     },
 
     language: {
         type: String,
-        required: true
+        required: false
     },
 
     relDate: {
         type: Date,
-        required: true
+        required: false
     },
 
     duration: {
         type: String,
-        required: true
+        required: false
     },
 
     aboutMovie: {
         type: String,
-        required: true
+        required: false
     },
 
 });
