@@ -125,7 +125,7 @@
         .genre {
             color: gray;
         }
-        
+
         .btn-action {
             background-color: #0f1d2c;
             color: white;
@@ -174,7 +174,7 @@
                                 <div class="offcanvas-body shadow-lg">
                                     <div id="body" class=" d-flex justify-content-evenly align-items-center">
                                         <div></div>
-                                        <p class="w-50 pt-2" >Unlock special offers $ great benefits</p>
+                                        <p class="w-50 pt-2">Unlock special offers $ great benefits</p>
                                         <button class="btn btn-border border-dark">login/register</button>
                                     </div>
                                 </div>
@@ -205,7 +205,7 @@
     <div class="shadow-lg p-4">
         <h5 class="mb-4">Recommended Movies</h5>
         <!-- data -->
-        
+
         <div class="container  mt-5 d-flex justify-content-start">
             <%data.map((e)=>{%>
                 <div class="card mx-auto col-4 " style="width: 20rem">
@@ -213,7 +213,8 @@
                     <div class="rating">
                         <i class="fas fa-star"></i>
                         <span>
-                            <%=e.star%> <%=e.votes%>/10 Votes
+                            <%=e.star%>
+                                <%=e.votes%>/10 Votes
                         </span>
                     </div>
                     <div class="card-body text-center">
@@ -232,8 +233,6 @@
                         <p>
                             <%=e.relDate%>
                         </p>
-                        
-
                     </div>
                     <div style="display: flex;" class="ps-3 mb-2">
                         <a href="/editData?id=<%=e.id%>"><button class="btn btn-action">Edit</button></a> &nbsp;&nbsp;

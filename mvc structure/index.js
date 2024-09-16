@@ -7,7 +7,6 @@ const path = require("path")
 
 app.set("view engine", "ejs")
 
-
 app.use(express(express.urlencoded({ extended: true })));
 
 app.use('/img', express.static(path.join(__dirname, 'img')));
