@@ -76,6 +76,7 @@
             <table class="table table-striped table-bordered">
                 <thead>
                     <tr>
+                        <th>Image</th>
                         <th>First</th>
                         <th>Last</th>
                         <th>Password</th>
@@ -87,6 +88,9 @@
                 <tbody>
                     <% data.map((el, i) => { %>
                         <tr>
+                            <td>
+                                <img src="<%= el.image%>" alt="">
+                            </td>
                             <td><%= el.fname %></td>
                             <td><%= el.lname %></td>
                             <td><%= el.password %></td>

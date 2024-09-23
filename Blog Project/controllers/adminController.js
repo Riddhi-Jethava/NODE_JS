@@ -16,6 +16,7 @@ module.exports.loginAdmin = async (req, res) => {
     }else{
         res.redirect("back");
     }
+    
   };
 
 module.exports.dashboard = async (req, res) => {
