@@ -1,6 +1,5 @@
 const passport = require("passport");
 const localSt = require('passport-local').Strategy;
-
 const schema = require("../model/schema");
 
 passport.use("local", new localSt(
@@ -10,10 +9,12 @@ passport.use("local", new localSt(
         const data = await schema.findOne({ email: email })
         console.log(data)
         if (data) {
-            if (data.password !== password) {
-                return done(null, false)
+            if (data.password == password) {
+                console.log("Data  enter");
+                return done(null, data)
             } else {
-                return done(null, true)
+                console.log("Data Not enter");
+                return done(null, false)
             }
         } else {
             return done(null, false)
@@ -47,6 +48,7 @@ passport.checkAuthantication = (req,res,next)=>{
     if(req.isAuthenticated()){
         return next()
     } else {
+        console.log('Not Authanticate');
         res.redirect('/')
     }
 }

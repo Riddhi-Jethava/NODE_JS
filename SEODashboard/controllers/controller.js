@@ -4,7 +4,7 @@ module.exports.loginPage = (req, res) => {
     res.render("loginPage")
 }
 
-module.exports.userLogin = async (req, res) => {
+module.exports.userLogin = (req, res) => {
     // res.render("homePage")
     // const user = await schema.findOne({ email: req.body.email });
     // if (!user) {
@@ -13,7 +13,8 @@ module.exports.userLogin = async (req, res) => {
     // user.password == req.body.password
     //   ? res.redirect("/")
     //   : res.redirect("back");
-    // res.redirect('/')
+    console.log(req.body + "LOgin Sucessfully")
+    res.redirect('/homepage')
 }
 
 module.exports.homePage = async (req, res) => {

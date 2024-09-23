@@ -6,7 +6,7 @@ const path = require("path");
 
 const db = require("./config/database");
 const schema = require("./model/schema");
-const session = require("express-session");
+const session = require('express-session');
 const passport = require("passport");
 const localSt = require("./config/passport")
 
