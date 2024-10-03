@@ -33,16 +33,7 @@ passport.deserializeUser(async (id, done) => {
     } else {
         done(null, false)
     }
-})
-
-// passport.chekAuth = (req,res,next) => {
-//     const user = req.user
-//     if(user.isAuthanticated()){
-//        
-//     } else {
-//         res.redirect("/")
-//     }
-// }
+});
 
 passport.checkAuthantication = (req,res,next)=>{
     if(req.isAuthenticated()){
