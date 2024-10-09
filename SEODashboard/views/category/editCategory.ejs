@@ -29,17 +29,13 @@
             <div class="card mb-0">
               <div class="card-body">
                 
-                <h4 class="text-center">Category Form</h4><br>
-                <form method="post" action="/category/addCategory" enctype="multipart/form-data">
+                <h4 class="text-center">Edit Category Form</h4><br>
+                <form method="post" action="/category/updateCategory?id=<%= data.id %>" >
                   <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">Category Name</label>
-                    <input type="text" name="name" class="form-control" id="" aria-describedby="emailHelp">
+                    <input type="text" name="category" value="<%= data.category %>" class="form-control" id="" aria-describedby="emailHelp">
                   </div>
-                  <div class="mb-4">
-                    <label for="exampleInputPassword1" class="form-label">Image</label>
-                    <input type="file" name="categoryImage" class="form-control" id="exampleInputPassword1">
-                  </div>
-                  <input type="submit" class="btn btn-primary w-100 py-8 fs-4 mb-4" value="Add">
+                  <input type="submit" class="btn btn-primary w-100 py-8 fs-4 mb-4" value="Edit">                  
                 </form>
               </div>
             </div>
@@ -54,6 +50,6 @@
   <script src="../assets/js/sidebarmenu.js"></script>
   <script src="../assets/js/app.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.8/dist/iconify-icon.min.js"></script>
-</body>
 
+</body>
 </html>

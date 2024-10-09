@@ -17,6 +17,7 @@ app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static(path.join(__dirname, "public")));
+app.use('/uploads', express.static(path.join(__dirname, "uploads")))
 
 app.use(session({
     name: "demo",
@@ -32,9 +33,10 @@ app.use(passport.authUser);
 app.use(flash());
 app.use(connectFlash.flashData)
 
-
 app.use("/", require("./routes"));
 app.use("/category", require("./routes/category"))
+app.use('/subcategory', require('./routes/subCategory'))
+app.use('/products', require('./routes/products'))
 
 app.listen(port, (err) => {
     console.log(err ? "error occured" : `server start on port = ${port}`)
