@@ -11,7 +11,7 @@ module.exports.managerLogin = async (req, res) => {
 
     if (data) {
         if (await bcrypt.compare(req.body.password, data.password)) {
-            let token = jwt.sign({ data: data }, "manager", { expiresIn: "1h" })
+            let token = jwt.sign({ data: data }, "node")
             res.status(200).json({ msg: "Manager Login Succesfully !", adminToken: token })
         }
         else {
@@ -26,6 +26,8 @@ module.exports.managerLogin = async (req, res) => {
 
 module.exports.profile = async (req, res) => {
     try {
+        // console.log("come to pro");
+        
         const manager = await regstrSchema.findById(req.user.data._id)
         res.status(200).json({ Profile: manager });
     } catch (error) {
@@ -55,6 +57,7 @@ module.exports.mngrforgetPass = async (req, res) => {
 
     res.status(200).json({ msg: "otp is sended to your email" })
 }
+
 
 module.exports.mngrChangePasscode = async (req, res) => {
     const data = await regstrSchema.findById(req.user.data._id)

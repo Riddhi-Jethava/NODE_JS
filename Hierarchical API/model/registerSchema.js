@@ -23,7 +23,8 @@ const register = mongoose.Schema({
     },
     role: {
         type : String,
-        required : true
+        required : true,
+        default : "Manager"
     },
     createdAt: {
         type: String,

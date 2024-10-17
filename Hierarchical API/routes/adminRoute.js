@@ -24,7 +24,7 @@ admin.get("/profile",auth, adminCtrl.profile)
 admin.post("/adminLogin", adminCtrl.adminLogin);
 admin.post("/changePassword", auth, adminCtrl.changePassword);
 admin.post("/forgetPassword", auth, adminCtrl.forgetPassword);
-admin.post('/managerRegstr', upload,  adminCtrl.managerRegstr);
+admin.post('/managerRegstr', adminCtrl.managerRegstr);
 admin.get('/viewManager', adminCtrl.viewManager);
 admin.delete("/deleteManager", adminCtrl.deleteManager);
 

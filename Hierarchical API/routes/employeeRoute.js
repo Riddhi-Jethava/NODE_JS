@@ -4,7 +4,7 @@ const auth = require("../config/authentication")
 
 const employeeCtl = require('../controllers/employeeController')
 
-employee.get("/profile", employeeCtl.profile)
+employee.get("/profile", auth,employeeCtl.profile)
 employee.post('/employeeLogin', employeeCtl.employeeLogin)
 employee.post("/employeeForgetPass", employeeCtl.employeeForgetPass);
 employee.post('/employeeChangePass', auth, employeeCtl.employeeChangePass)

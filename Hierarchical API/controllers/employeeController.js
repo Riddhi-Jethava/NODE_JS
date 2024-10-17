@@ -9,7 +9,7 @@ module.exports.employeeLogin = async (req,res) => {
     let data = await EmployeRegisterSchema.findOne({email: req.body.email })
     if(data) {
         if(await bcrypt.compare(req.body.password, data.password)) {
-            let token = jwt.sign({data: data}, "AdminKey", { expiresIn: "1h" })
+            let token = jwt.sign({data: data}, "node", { expiresIn: "1h" })
             res.status(200).json({ msg: "Employee Login Succesfully", adminToken: token })
         }
         else{
