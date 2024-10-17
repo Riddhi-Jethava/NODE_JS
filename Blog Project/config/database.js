@@ -7,3 +7,4 @@ const db = mongoose.connection
 db.once("open", (err) => {
     err ? console.log("Error occured") : console.log("Database start successfully !")
 });
+

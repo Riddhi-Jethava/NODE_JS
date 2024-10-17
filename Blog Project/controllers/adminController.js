@@ -12,7 +12,7 @@ module.exports.loginAdmin = async (req, res) => {
     }
     if(user.password == req.body.password){
         res.cookie("adminData", user);
-        res.redirect("/dashboard")
+        res.redirect("/dashboard");
     }else{
         res.redirect("back");
     }

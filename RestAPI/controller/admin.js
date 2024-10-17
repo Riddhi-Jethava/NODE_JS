@@ -6,8 +6,13 @@ module.exports.home = async (req, res) => {
 }
 
 module.exports.insertData = async (req, res) => {
-    const data = await userSchema.create(req.body)
-    res.status(201).json({ message: "Data added Successfully", data: data })
+    console.log(req.body);
+    const data = await userSchema.create(req.body);
+    res.status(201).json({ message: "Data added Successfully", data: data });
+
+    if(req.file){
+        req.body.image = req.file.path
+    }
 }
 
 module.exports.deleteData = async (req, res) => {
