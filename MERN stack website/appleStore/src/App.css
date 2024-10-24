@@ -1,0 +1,110 @@
+* {
+    /* font-family:'SF Pro Display'; */
+}
+header #nav{
+    background-color: rgba(22, 22, 23, 99);
+}
+
+
+
+header .shop {
+    background-color: rgba(22, 22, 23, 0.969);
+}
+
+#appleADDPro {
+    background-image: url(./assets//images/hero_iphone16pro_avail__fnf0f9x70jiy_large.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    object-fit: cover;
+    background-position: center;
+}
+
+#appleAdd {
+    background-image: url(./assets/images/hero_iphone16_avail__euwzls69btea_large.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    object-fit: cover;
+    background-position: center;
+}
+
+#iPad {
+    background-image: url(./assets/images/hero_ipad_mini_announce__fx0v6ox8z3u6_large_2x.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    object-fit: cover;
+    background-position: center;
+}
+
+#offer {
+    background-image: url(./assets//images/promo_diwali_announce__dyy1wizwn02u_large_2x.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    object-fit: cover;
+    background-position: center;
+}
+
+#offerA {
+    background-image: url(./assets//images/promo_diwali_announce__dyy1wizwn02u_large_2x.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    object-fit: cover;
+    background-position: center;
+}
+
+#offerB {
+    background-image: url(./assets//images/promo_apple_watch_series_10_avail__b9etp10v9tn6_large.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    object-fit: cover;
+    background-position: center;
+}
+
+#offerC {
+    background-image: url(./assets//images/promo_airpods_4_avail__bl22kvpg6ez6_large_2x.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    object-fit: cover;
+    background-position: center;
+}
+
+#offerD {
+    background-image: url(./assets//images/promo_macbook_air_m3__e43jegok3wuq_large.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    object-fit: cover;
+    background-position: center;
+}
+
+#offerE {
+    background-image: url(./assets//images/promo_apple_watch_ultra2_avail__dyawbjw9cowi_large.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    object-fit: cover;
+    background-position: center;
+}
+
+#offerF {
+    background-image: url(./assets//images/promo_iphone_tradein__bugw15ka691e_large.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    object-fit: cover;
+    background-position: center;
+}
+
+footer {
+    background-color: rgb(245, 245, 247);
+}
+
+#footerLinks a{
+    color: gray;
+    font-size: 12px;
+    margin-bottom: 6px;
+}
+
+
+/* Store */
+
+#storeImg img{
+    width: 120px;
+    margin-bottom: 14px;
+}

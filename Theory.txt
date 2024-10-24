@@ -1,0 +1,80 @@
+(1) what is node js ?
+   - node js open-source java script ka run time environment he jo js ko server side execute krne ke liye allow krta he. 
+
+(2) How does Node.js handle asynchronous operations.... Asynchronous operations ne handle karva mate Node.js ma callbacks, promises, ke async/await no use thay chhe.
+     Callback: Jyare tu koi operation kare chhe ane e puru thaye chhe, to callback function call thaye chhe ke jo result male to shu karvu.
+     Promises: E ek tariko chhe jethi asynchronous code ne thodi better rite manage kari shake. Promise tu ne ek vachan apse ke jyare operation complete thashe to response aavse, ane tu .then() ke .catch() thi success ke error handle kari shake chhe.
+     Async/Await: Aa async/await promises ne handle karva nu ek simplified way chhe, jyathi code vadhu readable lage. Await vapro to promise resolve thaye pachi j agal badhe.
+
+(3) What is the Node.js package manager?
+   - The Node.js package manager is called npm (Node Package Manager). It's used to install, manage, and share packages (libraries) that extend Node.js functionality.
+
+(4)  How can you include external modules in Node.js...... You can include external modules using the require() function.
+
+(5) What is the purpose of the fs module in Node.js..... fs module che, ena full form "file system" che. Aa module file system saathe interact karva mate na methods provide kare che, jemke file read karvu ane write karvu, directories create karvi, ane paths manage karva. Matlab tame system ma je files ane folders hoy ene handle karva mate fs module na methods use kari sako cho
+
+(6)  What is the difference between require() and import in Node.js?
+
+(7) How can you create a simple HTTP server using Node.js?
+
+(8) What is the purpose of the global object process in Node.js?
+   - Process object jo hota hai, woh Node.js process ke baare mein information aur control provide karta hai jo system pe run ho rahi hoti hai. Iske paas kuch important properties hoti hain jaise:
+
+argv: Command-line arguments ko store karta hai.
+env: Environment variables ka data rakhta hai.
+Aur kuch methods bhi provide karta hai, jaise exit(), jisko use karke tum process ko terminate (band) kar sakte ho. Yani ke, tum Node.js process ke upar complete control le sakte ho process object ke through.
+
+(9) How can you handle errors in Node.js? ... using try..catch block
+
+(10) What is middleware in the context of Express.js....
+
+(12)(15) ..remind
+
+(16) How does Node.js handle modules and dependencies?
+Node.js CommonJS module system ka use karta hai modules ko manage karne ke liye. Is system mein har file ko ek alag module ki tarah treat kiya jata hai. Tum require() function ka use karke koi bhi module import kar sakte ho, jaise ki built-in ya third-party modules.
+Agar tumhe apna khud ka module banana hai, to uske liye tum module.exports object ka use kar sakte ho. Isse tum apni file ke functions, objects, ya variables ko export kar sakte ho, taaki dusri files mein unhe import karke use kiya ja sake.
+
+(17) What is the purpose of the Buffer class in Node.js
+Node.js mein Buffer class kaafi useful hai jab tumhe binary data handle karna hota hai, jaise ki files se data read/write karte waqt ya phir network protocols ke dauran. Yeh binary format mein data ko store aur manipulate kar sakti hai, jo JavaScript natively nahi karta. File Input/Output (I/O) operations aur low-level data handling jisme binary data ho, unmein Buffer ka kaafi important role hota hai.
+
+Example: Agar tumhe ek file se data read karna hai ya kisi stream pe data send karna hai, to Buffer ko use karke tum efficiently binary data ko manage kar sakte ho.
+
+(18)  How can you perform asynchronous operations in a loop in Node.js?
+To perform asynchronous operations in a loop, you can use techniques like callbacks, promises, or async/await. Promises and async/await are especially helpful for writing more readable and maintainable code when dealing with async loops 
+
+(19)What is the event loop in Node.js
+
+(20) What is the purpose of the require.resolve() method in Node.js
+t's commonly used when you need to know the location of a module's file.
+
+(23) What is a Promise in Node.js
+
+(24) CORS (cross origin resource sharing)
+
+(25)What is the purpose of the crypto module in Node.js.... for security
+
+(46). What is the purpose of the http module in Node.js?
+The http module in Node.js provides a way to create and manage HTTP servers and clients. It
+enables you to create web servers, handle requests, and send responses using HTTP methods
+like GET, POST, PUT, and DELETE
+
+What is a template literal in Node.js?
+A template literal is a string literal that supports embedded expressions using backticks (`). It allows you to include variables and expressions directly within the string.
+
+Template literal Node.js (aur JavaScript) mein ek string literal hota hai jo backticks (`) ka use karta hai. Isme tum directly variables aur expressions ko string ke andar include kar sakte ho bina string concatenation ke. Matlab, agar tumhe ek string ke andar dynamic values (jaise variables ya expressions) dalni ho, to template literals kaafi convenient hote hain.
+
+
+
+
+> mvc:
+
+model - data management and logic handler
+
+view - user interface and presentation layer handler
+
+controller - user request handler, controller logic ne implement kre, model data process krke view ko pass krta he.
+(depth) controller ek middleware chhe je request ane response ne manage kare chhe. Samjhe ke ek website chhe ane koi user tya visit kare chhe, to user ni request first server sudhi pohnche chhe. Aa request mate shu response aapo, e decide karva nu kaam controller nu hoy chhe.
+
+Controller ek function ke module hase je request ne process kari ne corresponding response back kare. E route ni logic ne manage kare chhe, jem ke koi form submit thai to data process karvu, database thi data fetch karvu, ane pachhi user ne proper response aapo.
+
+Short ma, controller ae middleman chhe je client ni request laine, business logic (backend code) execute kari, ane response return kare chhe.

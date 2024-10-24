@@ -6,31 +6,31 @@ const adminSchema = mongoose.Schema({
     },
     name: {
         type: String,
-        required: true
+        required: false
     },
     email: {
         type: String,
-        required: true
+        required: false
     },
     password: {
         type: String,
-        required: true
+        required: false
     },
     hobby: {
         type: String,
-        required: true
+        required: false
     },
     gender: {
         type: String,
-        required: true
+        required: false
     },
     city: {
         type: String,
-        required: true
+        required: false
     },
     createdAt: {
         type: String,
-        required: true
+        required: false
     }
 })
 
