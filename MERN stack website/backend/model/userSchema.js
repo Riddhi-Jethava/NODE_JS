@@ -31,6 +31,6 @@ const schema = mongoose.Schema({
 
 });
 
-const task = mongoose.model("person", schema);
+const userSchema = mongoose.model("person", schema);
 
-module.exports = task
+module.exports = userSchema

@@ -1,18 +1,25 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import { RiImageAddLine, RiSave3Line } from 'react-icons/ri'; // Remix Icons
+import { useNavigate } from 'react-router-dom';
 
 const ProductForm = () => {
   const [product, setProduct] = useState({
     name: '',
     description: '',
     price: '',
-    image: null,
+    // image: null,
   });
+
+  const navigate = useNavigate()
 
   // Handle input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setProduct({ ...product, [name]: value });
+    setProduct((prevProduct) => ({
+      ...prevProduct,
+      [name]: value,
+    }));
   };
 
   // Handle file input
@@ -21,10 +28,33 @@ const ProductForm = () => {
   };
 
   // Submit form
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Add your form submission logic here
-    console.log('Product submitted:', product);
+    console.log("Done to submit");
+
+    try {
+      const response = await axios.post(
+        "http://localhost:1001/addProducts",
+        {
+          name: product.name,
+          description: product.description,
+          price: product.price,
+          // image : product.image,
+        },
+      );
+      navigate('/store')
+      // setProduct({
+      //   name: '',
+      //   description: '',
+      //   price: '',
+      // })
+      alert('Product Added Successfully');
+
+    } catch (err) {
+      console.log("Error While signing http://localhost:1001/addProducts");
+      console.log(err);
+      alert('Product not added, try again');
+    }
   };
 
   return (
@@ -56,7 +86,7 @@ const ProductForm = () => {
         </div>
         <div className='flex flex-col'>
           <label
-          className='mt-3'>Price</label>
+            className='mt-3'>Price</label>
           <input
             type="number"
             name="price"
@@ -69,15 +99,15 @@ const ProductForm = () => {
         </div>
         <div>
           <label>Product Image</label>
-          <input
+          {/* <input
             type="file"
             accept="image/*"
             onChange={handleImageChange}
             className='border py-3 rounded-lg mt-5 ms-3'
-          />
-          <div style={styles.iconPreview}>
+          /> */}
+          {/* <div style={styles.iconPreview}>
             <RiImageAddLine size={40} color="#888" />
-          </div>
+          </div> */}
         </div>
         <button type="submit" className='w-full' style={styles.submitButton}>
           <RiSave3Line size={20} style={{ marginRight: '8px' }} />
@@ -89,7 +119,7 @@ const ProductForm = () => {
 };
 
 const styles = {
- 
+
   iconPreview: {
     // marginTop: '15px',
     // display: 'flex',

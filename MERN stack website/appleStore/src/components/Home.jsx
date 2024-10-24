@@ -12,6 +12,7 @@ import axios from 'axios';
 const Home = () => {
 
     const navigate = useNavigate()
+    const user = JSON.parse(sessionStorage.getItem('user'))
 
     // useEffect(() => {
     //     const token = localStorage.getItem('token');
@@ -42,8 +43,14 @@ const Home = () => {
                             <a href="">Entertainment</a>
                             <a href="">Accessories</a>
                             <a href="">Support</a>
+                            {
+                                user.email === 'riddhijethava08@gmail.com' && 
+                                <>
+                                    <a href="addProduct">add Product</a>
+                                </>
+                            }
                             <a href="" className='text-lg'><FaUser /></a>
-                            <a href="signupPage" className='text-lg'><IoBagOutline /></a>
+                            <a href="" className='text-lg'><IoBagOutline /></a>
                         </li>
                     </ul>
                 </nav>

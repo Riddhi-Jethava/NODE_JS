@@ -1,19 +1,74 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import { IoIosSearch } from "react-icons/io";
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { IoBagOutline } from "react-icons/io5";
-import logo from '../assets/images/Logo.png'
-import AddProducts from './AddProducts';
+import logo from '../assets/images/Logo.png';
+import axios from 'axios';
 
 function Store() {
+  const [products, setProducts] = useState([]);
+  const [editingProductId, setEditingProductId] = useState(null);
+  const [editedProduct, setEditedProduct] = useState({});
+  const user = JSON.parse(sessionStorage.getItem('user'))
+
+
+  useEffect(() => {
+    fetchProducts();
+  }, []);
+
+  // Function to fetch products
+  const fetchProducts = () => {
+    axios.get('http://localhost:1001/showProducts')
+      .then((res) => {
+        setProducts(res.data.products);
+      })
+      .catch((err) => console.log(err));
+  };
+
+  // Function to handle edit button click
+  const handleEditClick = (product) => {
+    setEditingProductId(product._id);
+    setEditedProduct(product);
+  };
+
+  // Function to handle input change in the form
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setEditedProduct({ ...editedProduct, [name]: value });
+  };
+
+  // Function to handle form submission
+  const handleFormSubmit = () => {
+    axios.put(`http://localhost:1001/editProduct?id=${editingProductId}`, editedProduct)
+      .then((res) => {
+        console.log("Product updated successfully:", res.data);
+        setEditingProductId(null);
+        fetchProducts(); // Refresh the product list after updating
+      })
+      .catch((err) => console.log("Error updating product:", err));
+  };
+
+  // Function to handle cancel button click
+  const handleCancelClick = () => {
+    setEditingProductId(null);
+  };
+
+  // Function to handle delete product
+  const handleDelete = (productId) => {
+    axios.delete(`http://localhost:1001/deleteProduct?id=${productId}`)
+      .then((res) => {
+        console.log("Product deleted successfully:", res.data);
+        fetchProducts(); // Refresh the product list after deletion
+      })
+      .catch((err) => console.log("Error deleting product:", err));
+  };
+
   return (
     <div className='bg-gray-100'>
-
       <header>
         <nav className='sticky top-0 left-0' id='nav'>
           <ul className='w-[72%] m-auto'>
             <li className='flex justify-evenly p-3 text-[12px] text-gray-300'>
-              <a href=""><img src={logo} alt="" className='w-[16px]' id='logo' /></a>
+              <Link to='/home'><img src={logo} alt="" className='w-[16px]' id='logo' /></Link>
               <Link to='/store'><a href="">Store</a></Link>
               <a href="">Mac</a>
               <a href="">iPad</a>
@@ -24,7 +79,12 @@ function Store() {
               <a href="">Entertainment</a>
               <a href="">Accessories</a>
               <a href="">Support</a>
-              <a href="addProduct">add Product</a>
+              {
+                user.email === 'riddhijethava08@gmail.com' &&
+                <>
+                  <a href="addProduct">add Product</a>
+                </>
+              }
               <a href="" className='text-lg'><IoBagOutline /></a>
             </li>
           </ul>
@@ -99,18 +159,89 @@ function Store() {
         <div></div>
       </div>
 
-      <div>
-        <div className='w-[90%] border'>
-          <div>
-            <h1 className='text-[23px] font-semibold ms-5'><span className='text-[#8405cd]'>The latest.</span> Fresh arrivals to brighten up the festivities.</h1>
-          </div>
-          <div>
-            products
-          </div>
+      <div className='w-[90%] m-auto mt-10'>
+        <h1 className='text-[23px] font-semibold ms-5'>
+          <span className='text-[#8405cd]'>The latest.</span> Fresh arrivals to brighten up the festivities.
+        </h1>
+
+        {/* Display Products in Cards */}
+        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-5'>
+          {products.map((product) => (
+            <div key={product._id} className='bg-white rounded-lg shadow-lg p-5 m-3'>
+              {editingProductId === product._id ? (
+                // Edit Mode: Show form
+                <div>
+                  <input
+                    type="text"
+                    name="name"
+                    value={editedProduct.name}
+                    onChange={handleInputChange}
+                    className='w-full mb-2 p-2 border rounded'
+                  />
+                  <textarea
+                    name="description"
+                    value={editedProduct.description}
+                    onChange={handleInputChange}
+                    className='w-full mb-2 p-2 border rounded'
+                  ></textarea>
+                  <input
+                    type="number"
+                    name="price"
+                    value={editedProduct.price}
+                    onChange={handleInputChange}
+                    className='w-full mb-2 p-2 border rounded'
+                  />
+                  <div className='flex justify-between mt-3'>
+                    <button
+                      className='border px-5 py-2 rounded-lg bg-green-500'
+                      onClick={handleFormSubmit}
+                    >
+                      Submit
+                    </button>
+                    <button
+                      className='border px-5 py-2 rounded-lg bg-gray-400'
+                      onClick={handleCancelClick}
+                    >
+                      Cancel
+                    </button>
+                  </div>
+                </div>
+              ) : (
+                // View Mode: Show product details
+                <div>
+                  <h2 className='text-lg font-bold'>{product.name}</h2>
+                  <p className='text-gray-600 mb-3'>{product.description}</p>
+                  <p className='text-gray-800 font-semibold'>₹{product.price}</p>
+                  {product.image && (
+                    <img src={product.image} alt={product.name} className='w-full h-40 object-cover mt-3 rounded-md' />
+                  )}
+                  {
+                    user.email === 'riddhijethava08@gmail.com' &&
+                    <>
+                      <div className='flex justify-between mt-3'>
+                        <button
+                          className='border px-5 py-2 rounded-lg bg-yellow-400'
+                          onClick={() => handleEditClick(product)}
+                        >
+                          Edit
+                        </button>
+                        <button
+                          className='border px-5 py-2 rounded-lg bg-red-600'
+                          onClick={() => handleDelete(product._id)}
+                        >
+                          Delete
+                        </button>
+                      </div>
+                    </>
+                  }
+                </div>
+              )}
+            </div>
+          ))}
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default Store
+export default Store;

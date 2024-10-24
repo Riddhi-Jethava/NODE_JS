@@ -8,13 +8,16 @@ import img3 from '../assets/images/promo_logo_iphone_tradein__7y3gtai5az66_large
 import { Link, useNavigate } from 'react-router-dom';
 
 const Nav = () => {
+
+  const token = sessionStorage.getItem("token")
+
   return (
     <div>
       <header>
         <nav className='sticky top-0 left-0' id='nav'>
           <ul className='w-[72%] m-auto'>
             <li className='flex justify-evenly p-3 text-[12px] text-gray-300'>
-              <a href=""><img src={logo} alt="" className='w-[16px]' id='logo' /></a>
+            <Link to='/home'><img src={logo} alt="" className='w-[16px]' id='logo' /></Link>
               <Link to='/store'><a href="">Store</a></Link>
               <a href="">Mac</a>
               <a href="">iPad</a>
@@ -25,6 +28,7 @@ const Nav = () => {
               <a href="">Entertainment</a>
               <a href="">Accessories</a>
               <a href="">Support</a>
+              <a href="addProduct">add </a>
               <a href="" className='text-lg'><IoIosSearch /></a>
               <a href="signupPage" className='text-lg'><IoBagOutline /></a>
             </li>

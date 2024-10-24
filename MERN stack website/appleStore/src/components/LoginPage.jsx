@@ -15,13 +15,19 @@ const LoginPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post('http://localhost:1001/login', { email, password });
+      await axios.post('http://localhost:1001/login', { email, password })
+      .then((res)=>{
+        if(res.data.token){
+          sessionStorage.setItem("token", res.data.token)
+          sessionStorage.setItem("user", JSON.stringify(res.data.user))
+          navigate('/home')
+          window.location.reload()
+        }
+      })
+      .catch((err)=> console.log(err))
 
       // Navigate to the home page upon successful login
-      navigate('/home')
-      alert('login successfully !');
       
-
     } catch (err) {
       console.log('Error while logging http://localhost:1001/login');
       console.log(err);
@@ -31,27 +37,6 @@ const LoginPage = () => {
 
   return (
     <div className='bg-gray-100 w-full h-[100vh] flex justify-between items-center flex-col'>
-      <header className='w-full'>
-        <nav className='sticky top-0 left-0 bg-transprent' id='nav'>
-          <ul className='w-[72%] m-auto'>
-            <li className='flex justify-evenly p-3 text-[12px] text-gray-300'>
-              <a href=""><img src={logo} alt="" className='w-[16px]' id='logo' /></a>
-              <Link to='/store'><a href="">Store</a></Link>
-              <a href="">Mac</a>
-              <a href="">iPad</a>
-              <a href="">iPhone</a>
-              <a href="">Watch</a>
-              <a href="">AirPods</a>
-              <a href="">Tv & Home</a>
-              <a href="">Entertainment</a>
-              <a href="">Accessories</a>
-              <a href="">Support</a>
-              <a href="" className='text-lg'><IoIosSearch /></a>
-              <a href="" className='text-lg'><IoBagOutline /></a>
-            </li>
-          </ul>
-        </nav>
-      </header>
       <div className='w-[600px] h-[400px] text-center mt-5'>
         <h1 className='text-[26px] font-semibold mb-3'>Singing to Apple Store</h1>
         <form onSubmit={handleSubmit} className='flex flex-col items-center'>
